@@ -105,10 +105,10 @@ FROM base AS publish
 # ============================================================================
 
 # Build ARGS
-ARG OSM_FILE=./ors-api/src/test/files/heidelberg.test.pbf
+# ARG OSM_FILE=./ors-api/src/test/files/heidelberg.test.pbf
 
 # Copy over the needed bits and pieces from the other stages.
-COPY --chown=ors:ors --chmod=755 ./$OSM_FILE /heidelberg.test.pbf
+# COPY --chown=ors:ors --chmod=755 ./$OSM_FILE /heidelberg.test.pbf
 COPY --chown=ors:ors --chmod=755 ./docker-entrypoint.sh /entrypoint.sh
 COPY --chown=ors:ors --from=build-go /go/bin/yq /bin/yq
 # Copy JAR from build stage with broader permissions
@@ -124,11 +124,11 @@ COPY --chown=ors:ors --chmod=755 ./ors-config.yml /example-ors-config.yml
 COPY --chown=ors:ors --chmod=755 ./ors-config.env /example-ors-config.env
 
 # Rewrite the example config to use the right files in the container
-RUN yq -i -p=props -o=props \
-    '.ors.engine.profile_default.build.source_file="/home/ors/files/example-heidelberg.test.pbf"' \
-    /example-ors-config.env && \
-    yq -i e '.ors.engine.profile_default.build.source_file = "/home/ors/files/example-heidelberg.test.pbf"' \
-    /example-ors-config.yml
+# RUN yq -i -p=props -o=props \
+#     '.ors.engine.profile_default.build.source_file="/home/ors/files/example-heidelberg.test.pbf"' \
+#     /example-ors-config.env && \
+#     yq -i e '.ors.engine.profile_default.build.source_file = "/home/ors/files/example-heidelberg.test.pbf"' \
+#     /example-ors-config.yml
 
 ENV BUILD_GRAPHS="False"
 ENV REBUILD_GRAPHS="False"

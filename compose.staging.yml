@@ -4,7 +4,7 @@ services:
     container_name: ors-app
     restart: unless-stopped
     ports:
-      - "127.0.0.1:8082:8082"
+      - "127.0.0.1:8085:8082"
     volumes:
       - ./graphs:/home/ors/graphs
       - ./config:/home/ors/config

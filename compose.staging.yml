@@ -1,0 +1,18 @@
+services:
+  ors-app:
+    image: openrouteservice/openrouteservice:v9.7.0
+    container_name: ors-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8082:8082"
+    volumes:
+      - ./graphs:/home/ors/graphs
+      - ./config:/home/ors/config
+      - ./files:/home/ors/files
+      - ./logs:/home/ors/logs
+      - ./elevation_cache:/home/ors/elevation_cache
+    environment:
+      REBUILD_GRAPHS: "False"
+      CONTAINER_LOG_LEVEL: INFO
+      XMS: 512m
+      XMX: 2g

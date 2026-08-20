@@ -1,6 +1,6 @@
 services:
   ors-app:
-    image: openrouteservice/openrouteservice:v9.7.0
+    image: openrouteservice/openrouteservice:v9.10.0
     container_name: ors-app
     restart: unless-stopped
     volumes:

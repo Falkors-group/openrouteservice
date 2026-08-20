@@ -4,16 +4,11 @@
 services:
   # ----------------- ORS application configuration ------------------- #
   ors-app:
-    # Activate the following lines to build the container from the repository
-    # You have to add --build to the docker compose command to do so
-    build:
-      context: ./
-      target: publish
     container_name: ors-app
     ports:
       - "8082:8082"  # Expose the ORS API on port 8082
       - "9001:9001"  # Expose additional port for monitoring (optional)
-    image: local/openrouteservice:latest
+    image: openrouteservice/openrouteservice:v9.10.0
     # Advanced option! If you different ids to 0:0 and 1000:1000, you have to rebuild the container with the build args UID,GID.
     # The user command is useful if you want easier bind mount access or better security.
     #user: "1000:1000" # Run "mkdir -p ors-docker/config ors-docker/elevation_cache ors-docker/files ors-docker/graphs ors-docker/logs && sudo chown -R 1000:1000 ors" before starting the container!
